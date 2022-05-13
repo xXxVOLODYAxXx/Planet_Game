@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: planet_game
+      MYSQL_ROOT_PASSWORD: 12345678
+    volumes:
+      - ./docker/db/mysql/data:/var/lib/mysql
+      - ./docker/db/mysql/log:/var/log
+    ports:
+      - "33063:3306"
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
